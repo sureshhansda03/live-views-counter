@@ -1,3 +1,4 @@
+"use client";
 // ✅ Vercel-Ready Next.js (App Router) Project with Live Views Counter (Dummy)
 
 // File: app/page.tsx
