@@ -35,27 +35,3 @@ export default function Home() {
   );
 }
 
-// File: public/data.json (Dummy Data for Testing)
-// Paste this manually in the public folder of your project
-/*
-[
-  { "channel": "Santali TV", "views": 1267890 },
-  { "channel": "Adivasi Beats", "views": 845670 },
-  { "channel": "Tribal Vibes", "views": 309456 }
-]
-*/
-
-// File: tailwind.config.ts (basic Tailwind setup)
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: ["./app/**/*.{js,ts,jsx,tsx}"],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-};
-
-// File: app/globals.css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
