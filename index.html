@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Live YouTube Subscriber Counter</title>
+  <style>
+    body {
+      background: #0f0f0f;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 100px;
+    }
+    .card {
+      background: #1f1f1f;
+      border-radius: 15px;
+      padding: 40px;
+      display: inline-block;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+    }
+    img {
+      width: 100px;
+      border-radius: 50%;
+    }
+    h1 {
+      margin: 20px 0 10px;
+    }
+    .count {
+      font-size: 2rem;
+      color: #ff0000;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img id="channelLogo" src="" alt="Channel Logo">
+    <h1 id="channelName">Loading...</h1>
+    <p class="count" id="subscriberCount">Subscribers: 0</p>
+  </div>
+
+  <script>
+    const API_KEY = 'YOUR_API_KEY'; // ← यहाँ अपनी YouTube API Key डालो
+    const CHANNEL_ID = 'UC_x5XG1OV2P6uZZ5FSM9Ttw'; // ← यहाँ चैनल ID डालो (उदाहरण: Google Developers)
+
+    async function fetchChannelData() {
+      const res = await fetch(`https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=${CHANNEL_ID}&key=${API_KEY}`);
+      const data = await res.json();
+      const channel = data.items[0];
+
+      document.getElementById('channelName').textContent = channel.snippet.title;
+      document.getElementById('channelLogo').src = channel.snippet.thumbnails.default.url;
+      document.getElementById('subscriberCount').textContent = `Subscribers: ${Number(channel.statistics.subscriberCount).toLocaleString()}`;
+    }
+
+    fetchChannelData();
+    setInterval(fetchChannelData, 5000); // हर 5 सेकंड में update होगा
+  </script>
+</body>
+</html>
